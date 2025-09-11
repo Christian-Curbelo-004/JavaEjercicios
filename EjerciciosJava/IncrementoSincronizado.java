@@ -1,5 +1,6 @@
 package EjerciciosJava;
 
+// este es con semaforo broo
 import java.util.concurrent.Semaphore;
 // Con sincronziacion con semaforos
 public class IncrementoSincronizado implements Runnable {
