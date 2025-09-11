@@ -9,43 +9,55 @@ public class CuentaBancaria implements Runnable {
     private int Deposito;
     private int Retiro;
 
-    public CuentaBancaria(int saldoInicial, int digito, int deposito, int retiro, String clienteUno, String clienteDos) {
+    public CuentaBancaria(String clienteUno, String clienteDos, int digito, int saldo, int deposito, int retiro){
         this.ClienteUno = clienteUno;
         this.ClienteDos = clienteDos;
         this.Digito = digito;
-        this.Saldo = saldoInicial;
+        this.Saldo = saldo;
         this.Deposito = deposito;
         this.Retiro = retiro;
-        
-    }
 
+    }
+   
+    public void Consultar(){
+    System.out.println(ClienteUno + " consulto su saldo : " + Saldo);
+    System.out.println(ClienteDos + " consulto su saldo : " + Saldo);
+   }
+   public void Depositar(){
+    Saldo += Deposito;
+    System.out.println(ClienteUno + " deposito: " + Deposito + " en su cuenta, ahora su saldo es de: " + Saldo);
+    System.out.println(ClienteDos + " deposito: " + Deposito + " en su cuenta, ahora su saldo es de:  " + Saldo);
+   }
+
+   public void Reitrar(){
+    Saldo -= Retiro;
+    System.out.println(ClienteUno + " retiro: " + Retiro + " y ahora tiene: " + Saldo);
+    System.out.println(ClienteDos + " retiro: " + Retiro + " y ahora tiene: " + Saldo);
+   }
+   
     public void run() {
-       if(Digito == 1) {
-        System.out.println(ClienteUno + " consultó su saldo: " + Saldo + " pesos");
-        System.out.println(ClienteDos + " consultó su saldo: " + Saldo + " pesos");
-
-           // Lógica para el cliente uno
-       } else if(Digito == 2) {
-           Saldo -= Retiro;
-           System.out.println(ClienteUno + " retiró: " + Retiro + " pesos, Saldo actual: " + Saldo + " pesos");
-           System.out.println(ClienteDos + " retiró: " + Retiro + " pesos, Saldo actual: " + Saldo + " pesos");
-
-       } else if (Digito == 3) {
-           Saldo += Deposito;
-           System.out.println(ClienteUno + " depositó: " + Deposito + " pesos, Saldo actual: " + Saldo + " pesos");
-           System.out.println(ClienteDos + " depositó: " + Deposito + " pesos, Saldo actual: " + Saldo + " pesos");
-       }
-       
+        if (Digito == 1) {
+            Consultar();
+        } else if (Digito == 2) {
+            Depositar();
+        } else if (Digito == 3) {
+            Reitrar();
+        }
     }
-    public static void main(String[] args) {
-           CuentaBancaria cuenta = new CuentaBancaria(100, 1, 50, 30, "Cliente Uno", "Cliente Dos");
-           CuentaBancaria cuenta2 = new CuentaBancaria(100, 2, 50, 30, "Cliente Uno", "Cliente Dos");
-           CuentaBancaria cuenta3 = new CuentaBancaria(100, 3, 50, 30, "Cliente Uno", "Cliente Dos");
-           Thread cliente1 = new Thread(cuenta);
-           Thread cliente2 = new Thread(cuenta2);
-           Thread cliente3 = new Thread(cuenta3);
-           cliente1.start();
-           cliente2.start();
-           cliente3.start();
-       }
+    public  static void main(String[] args){
+        
+        CuentaBancaria cuenta1 = new CuentaBancaria(" Cliente Uno ", "Cliente Dos",1, 100, 70, 50);
+        CuentaBancaria cuenta2 = new CuentaBancaria(" Cliente Uno ", "Cliente Dos", 2, 100, 80, 30);
+        CuentaBancaria cuenta3 = new CuentaBancaria(" Cliente Uno ", " Cliente Dos ", 3, 1000, 200, 100);
+        
+        Thread c1 = new Thread(cuenta1);
+        Thread c2 = new Thread(cuenta2);
+        Thread c3 = new Thread(cuenta3);
+        
+        c1.start();
+        c2.start();
+        c3.start();
+    }
 }
+
+   
