@@ -9,9 +9,8 @@ public class CuentaRegresiva implements Runnable {
        this.Contador = contador;
         CuentaRegresiva.Hilo = Hilo;
        this.LimiteContador = LimiteContador;
-
-
     }
+    
     public void run() {
         while(Contador >= 0) {
             System.out.println("Hilo: " + Contador);
