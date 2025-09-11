@@ -21,19 +21,19 @@ public class CuentaBancaria implements Runnable {
 
     public void run() {
        if(Digito == 1) {
-        System.out.println(ClienteUno + " consultó su saldo: " + Saldo);
-        System.out.println(ClienteDos + " consultó su saldo: " + Saldo);
+        System.out.println(ClienteUno + " consultó su saldo: " + Saldo + " pesos");
+        System.out.println(ClienteDos + " consultó su saldo: " + Saldo + " pesos");
 
            // Lógica para el cliente uno
        } else if(Digito == 2) {
            Saldo -= Retiro;
-           System.out.println(ClienteUno + " retiró: " + "Saldo actual: " + Saldo);
-           System.out.println(ClienteDos + " retiró: " + "Saldo actual: " + Saldo);
+           System.out.println(ClienteUno + " retiró: " + Retiro + " pesos, Saldo actual: " + Saldo + " pesos");
+           System.out.println(ClienteDos + " retiró: " + Retiro + " pesos, Saldo actual: " + Saldo + " pesos");
 
        } else if (Digito == 3) {
            Saldo += Deposito;
-           System.out.println(ClienteUno + " depositó: " + "Saldo actual: " + Saldo);
-           System.out.println(ClienteDos + " depositó: " + "Saldo actual: " + Saldo);
+           System.out.println(ClienteUno + " depositó: " + Deposito + " pesos, Saldo actual: " + Saldo + " pesos");
+           System.out.println(ClienteDos + " depositó: " + Deposito + " pesos, Saldo actual: " + Saldo + " pesos");
        }
        
     }
